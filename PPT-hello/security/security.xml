@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+
+        <!-- Nhóm người dùng cho Khóa học -->
+        <record id="course_group_user" model="res.groups">
+            <field name="name">Course User</field>
+            <field name="category_id" ref="base.module_category_education"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Nhóm 'Course Manager' có quyền quản lý các khóa học (tạo, chỉnh sửa, xóa) -->
+        <record id="course_group_manager" model="res.groups">
+            <field name="name">Course Manager</field>
+            <field name="category_id" ref="base.module_category_education"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <!-- Nhóm người dùng cho Lịch trình khóa học -->
+        <record id="schedule_group_user" model="res.groups">
+            <field name="name">Schedule User</field>
+            <field name="category_id" ref="base.module_category_education"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Nhóm 'Schedule Manager' có quyền quản lý lịch trình khóa học (tạo, chỉnh sửa, xóa) -->
+        <record id="schedule_group_manager" model="res.groups">
+            <field name="name">Schedule Manager</field>
+            <field name="category_id" ref="base.module_category_education"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        
+        <!-- Nhóm người dùng cho Giảng viên -->
+        <record id="teacher_group_user" model="res.groups">
+            <field name="name">Teacher User</field>
+            <field name="category_id" ref="base.module_category_education"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Nhóm 'Teacher Manager' có quyền quản lý giảng viên (tạo, chỉnh sửa, xóa) -->
+        <record id="teacher_group_manager" model="res.groups">
+            <field name="name">Teacher Manager</field>
+            <field name="category_id" ref="base.module_category_education"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Nhóm người dùng cho Học viên -->
+        <record id="student_group_user" model="res.groups">
+            <field name="name">Student User</field>
+            <field name="category_id" ref="base.module_category_education"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Nhóm 'Student Manager' có quyền quản lý học viên (tạo, chỉnh sửa, xóa học viên) -->
+        <record id="student_group_manager" model="res.groups">
+            <field name="name">Student Manager</field>
+            <field name="category_id" ref="base.module_category_education"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Định nghĩa một sequence mới cho giảng viên -->
+        <record id="seq_teacher_id" model="ir.sequence">
+            <field name="name">Mã giảng viên</field> <!-- Tên sequence -->
+            <field name="code">teacher.odoo</field> <!-- Mã code của sequence -->
+            <field name="prefix">GV</field> <!-- Tiền tố, ví dụ: GV -->
+            <field name="padding">4</field> <!-- Padding (số chữ số sau tiền tố) -->
+            <field name="number_increment">1</field> <!-- Mỗi lần tạo bản ghi mới, tăng thêm 1 -->
+        </record>
+    </data>
+</odoo>

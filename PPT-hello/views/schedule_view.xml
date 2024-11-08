@@ -1,0 +1,129 @@
+<odoo>
+    <data>
+        <!-- Kanban View - Lịch học -->
+        <record id="schedule_kanban_view" model="ir.ui.view">
+            <field name="name">schedule.kanban.view</field>
+            <field name="model">schedule.odoo</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name" />
+                    <field name="course_id" />
+                    <field name="instructor_id" />
+                    <field name="date" />
+                    <field name="start_time" />
+                    <field name="end_time" />
+                    <field name="room" />
+                    <!-- Các template để hiển thị card -->
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card">
+                                <div class="oe_kanban_content">
+                                    <h3>
+                                        <field name="name" />
+                                    </h3>
+                                    <p>Khóa học: <field name="course_id" /></p>
+                                    <p>Giảng viên: <field name="instructor_id" /></p>
+                                    <p>Ngày: <field name="date" /></p>
+                                    <p>Giờ bắt đầu: <field name="start_time" /></p>
+                                    <p>Giờ kết thúc: <field name="end_time" /></p>
+                                    <p>Phòng: <field name="room" /></p>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- Tree View - Lịch học -->
+        <record id="schedule_view_tree" model="ir.ui.view">
+            <field name="name">schedule.odoo.tree</field>
+            <field name="model">schedule.odoo</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách Lịch học">
+                    <field name="name" />
+                    <field name="course_id" />
+                    <field name="instructor_id" />
+                    <field name="date" />
+                    <field name="start_time" />
+                    <field name="end_time" />
+                    <field name="room" />
+                </tree>
+            </field>
+        </record>
+        <!-- Form View - Lịch học -->
+        <record id="schedule_view_form" model="ir.ui.view">
+            <field name="name">schedule.odoo.form</field>
+            <field name="model">schedule.odoo</field>
+            <field name="arch" type="xml">
+                <form string="Thông tin Lịch học">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" />
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="course_id" />
+                            <field name="instructor_id" />
+                            <field name="date" />
+                        </group>
+                        <group>
+                            <field name="start_time" />
+                            <field name="end_time" />
+                            <field name="room" />
+                        </group>
+                        <group>
+                            <field name="student_ids" widget="many2many_tags" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Action cho chế độ xem Kanban -->
+        <record id="schedule_action_kanban" model="ir.actions.act_window">
+            <field name="name">Danh sách Lịch học (Kanban)</field>
+            <field name="res_model">schedule.odoo</field>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="schedule_kanban_view" />
+        </record>
+
+        <!-- Action cho chế độ xem Tree -->
+        <record id="schedule_action_tree" model="ir.actions.act_window">
+            <field name="name">Danh sách Lịch học (Tree)</field>
+            <field name="res_model">schedule.odoo</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="schedule_view_tree" />
+        </record>
+
+        <!-- Action cho chế độ xem Form -->
+        <record id="schedule_action_form" model="ir.actions.act_window">
+            <field name="name">Tạo Lịch học</field>
+            <field name="res_model">schedule.odoo</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="schedule_view_form" />
+        </record>
+
+        <!-- Action chung cho tất cả các chế độ xem -->
+        <record id="schedule_action_all_views" model="ir.actions.act_window">
+            <field name="name">Lịch học</field>
+            <field name="res_model">schedule.odoo</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="schedule_kanban_view" />
+        </record>
+
+        <!-- Menu chính: Lịch học -->
+        <menuitem id="schedule_menu" name="Lịch học" action="schedule_action_all_views" />
+
+        <!-- Các menu con -->
+        <menuitem id="schedule_menu_views" name="Chế độ xem" parent="schedule_menu">
+            <menuitem id="schedule_menu_form" name="Tạo Lịch học" action="schedule_action_form" />
+            <menuitem id="schedule_menu_tree" name="Danh sách Lịch học (Tree)"
+                action="schedule_action_tree" />
+            <menuitem id="schedule_menu_kanban" name="Danh sách Lịch học (Kanban)"
+                action="schedule_action_kanban" />
+        </menuitem>
+
+
+    </data>
+</odoo>

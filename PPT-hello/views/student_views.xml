@@ -1,0 +1,144 @@
+<odoo>
+    <data>
+        <record id="student_kanban_view" model="ir.ui.view">
+            <field name="name">student.odoo.kanban</field>
+            <field name="model">student.odoo</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card">
+                                <div class="oe_kanban_content">
+                                    <h3>
+                                        <field name="name" />
+                                    </h3>
+                                    <div class="oe_kanban_detail">
+                                        <p>
+                                            <strong>Mã HV:</strong>
+                                            <field name="student_id" />
+                                        </p>
+                                        <p>
+                                            <strong>Tuổi:</strong>
+                                            <field name="age" />
+                                        </p>
+                                        <p>
+                                            <strong>Giới tính:</strong>
+                                            <field name="sex" />
+                                        </p>
+                                        <p>
+                                            <strong>Điện thoại:</strong>
+                                            <field name="phone" />
+                                        </p>
+                                        <p>
+                                            <strong>Email:</strong>
+                                            <field name="email" />
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- View: Danh sách Học viên (Tree) -->
+        <record id="student_view_tree" model="ir.ui.view">
+            <field name="name">student.odoo.tree</field>
+            <field name="model">student.odoo</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách Học viên">
+                    <field name="student_id" />
+                    <field name="name" />
+                    <field name="age" />
+                    <field name="sex" />
+                    <field name="phone" />
+                    <field name="status" />
+                </tree>
+            </field>
+        </record>
+        <!-- View: Thông tin Học viên (Form) -->
+        <record id="student_view_form" model="ir.ui.view">
+            <field name="name">student.odoo.form</field>
+            <field name="model">student.odoo</field>
+            <field name="arch" type="xml">
+                <form string="Thông tin Học viên">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" />
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+
+                        <!-- Nhóm 1: Thông tin cá nhân -->
+                        <group>
+                            <field name="sex" widget="radio" options="{'horizontal': true}" />
+                            <field name="age" />
+                            <field name="date_of_birth" />
+                        </group>
+
+                        <!-- Nhóm 2: Thông tin liên lạc -->
+                        <group>
+                            <field name="phone" />
+                            <field name="email" />
+                            <field name="address" />
+                        </group>
+
+                        <!-- Nhóm 3: Thêm hình ảnh Học viên -->
+                        <group>
+                            <field name="image" widget="image" class="oe_avatar" />
+                        </group>
+
+                        <!-- Trạng thái học viên -->
+                        <group>
+                            <field name="status" options="{'no_create': False}" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Action cho chế độ xem Kanban -->
+        <record id="student_action_kanban" model="ir.actions.act_window">
+            <field name="name">Danh sách Học viên (Kanban)</field>
+            <field name="res_model">student.odoo</field>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="student_kanban_view" />
+        </record>
+
+        <!-- Action cho chế độ xem Tree -->
+        <record id="student_action_tree" model="ir.actions.act_window">
+            <field name="name">Danh sách Học viên (Tree)</field>
+            <field name="res_model">student.odoo</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="student_view_tree" />
+        </record>
+
+        <!-- Action cho chế độ xem Form -->
+        <record id="student_action_form" model="ir.actions.act_window">
+            <field name="name">Tạo học viên</field>
+            <field name="res_model">student.odoo</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="student_view_form" />
+        </record>
+
+        <!-- Action chung cho tất cả các chế độ xem -->
+        <record id="student_action_all_views" model="ir.actions.act_window">
+            <field name="name">Học viên</field>
+            <field name="res_model">student.odoo</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="student_kanban_view" />
+        </record>
+
+        <!-- Menu chính: Học viên -->
+        <menuitem id="student_menu" name="Học viên" action="student_action_all_views" />
+
+        <!-- Các menu con -->
+        <menuitem id="student_menu_views" name="Chế độ xem" parent="student_menu">
+            <menuitem id="student_menu_form" name="Tạo học viên" action="student_action_form" />
+            <menuitem id="student_menu_tree" name="Danh sách Học viên (Tree)"
+                action="student_action_tree" />
+            <menuitem id="student_menu_kanban" name="Danh sách Học viên (Kanban)"
+                action="student_action_kanban" />
+        </menuitem>
+    </data>
+</odoo>

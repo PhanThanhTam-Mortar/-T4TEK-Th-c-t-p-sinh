@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_course_user,Course User,model_course_odoo,course_group_user,1,1,1,0
+access_course_manager,Course Manager,model_course_odoo,course_group_manager,1,1,1,1
+access_schedule_user,Schedule User,model_schedule_odoo,schedule_group_user,1,0,0,0
+access_schedule_manager,Schedule Manager,model_schedule_odoo,schedule_group_manager,1,1,1,1
+access_teacher_user,Teacher User,model_teacher_odoo,teacher_group_user,1,0,0,0
+access_teacher_manager,Teacher Manager,model_teacher_odoo,teacher_group_manager,1,1,1,1
+access_student_user,Student User,model_student_odoo,student_group_user,1,0,0,0
+access_student_manager,Student Manager,model_student_odoo,student_group_manager,1,1,1,1

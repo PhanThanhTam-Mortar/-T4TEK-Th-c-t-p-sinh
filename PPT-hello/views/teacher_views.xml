@@ -1,0 +1,136 @@
+<odoo>
+    <data>
+        <!-- Kanban View - Giảng viên -->
+        <record id="teacher_kanban_view" model="ir.ui.view">
+            <field name="name">teacher.kanban.view</field>
+            <field name="model">teacher.odoo</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name" />
+                    <field name="employee_id" />
+                    <field name="age" />
+                    <field name="sex" />
+                    <field name="email" />
+                    <field name="department" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card">
+                                <div class="oe_kanban_content">
+                                    <h3>
+                                        <field name="name" />
+                                    </h3>
+                                    <p>Mã GV: <field name="employee_id" /></p>
+                                    <p>Tuổi: <field name="age" /></p>
+                                    <p>Giới tính: <field name="sex" /></p>
+                                    <p>Email: <field name="email" /></p>
+                                    <p>Khoa: <field name="department" /></p>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <!-- Tree View - Giảng viên -->
+        <record id="teacher_view_tree" model="ir.ui.view">
+            <field name="name">teacher.odoo.tree</field>
+            <field name="model">teacher.odoo</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách Giảng viên">
+                    <field name="name" />
+                    <field name="age" />
+                    <field name="sex" />
+                    <field name="date_of_birth" />
+                    <field name="phone" />
+                    <field name="email" />
+                    <field name="employee_id" />
+                    <field name="department" />
+                </tree>
+            </field>
+        </record>
+        <!-- Form View - Giảng viên -->
+        <record id="teacher_view_form" model="ir.ui.view">
+            <field name="name">teacher.odoo.form</field>
+            <field name="model">teacher.odoo</field>
+            <field name="arch" type="xml">
+                <form string="Thông tin Giảng viên">
+                    <sheet>
+                        <!-- Tiêu đề thông tin giảng viên -->
+                        <div class="oe_title">
+                            <label for="name" />
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <!-- Nhóm 1: Thông tin cá nhân -->
+                        <group>
+                            <field name="sex" />
+                            <field name="date_of_birth" />
+                        </group>
+                        <!-- Nhóm 2: Thông tin liên lạc -->
+                        <group>
+                            <field name="age" />
+                            <field name="phone" />
+                            <field name="email" />
+                            <field name="employee_id" />
+                        </group>
+                        <!-- Nhóm 3: Thông tin chuyên môn -->
+                        <group>
+                            <field name="department" />
+                            <field name="qualification" />
+                            <field name="hire_date" />
+                        </group>
+                        <!-- Thêm hình ảnh giảng viên -->
+                        <group>
+                            <field name="image" widget="image" class="oe_avatar" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Action cho chế độ xem Kanban -->
+        <record id="teacher_action_kanban" model="ir.actions.act_window">
+            <field name="name">Danh sách Giảng viên (Kanban)</field>
+            <field name="res_model">teacher.odoo</field>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="teacher_kanban_view" />
+        </record>
+
+        <!-- Action cho chế độ xem Tree -->
+        <record id="teacher_action_tree" model="ir.actions.act_window">
+            <field name="name">Danh sách Giảng viên (Tree)</field>
+            <field name="res_model">teacher.odoo</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="teacher_view_tree" />
+        </record>
+
+        <!-- Action cho chế độ xem Form -->
+        <record id="teacher_action_form" model="ir.actions.act_window">
+            <field name="name">Tạo Giảng viên</field>
+            <field name="res_model">teacher.odoo</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="teacher_view_form" />
+        </record>
+
+        <!-- Action chung cho tất cả các chế độ xem -->
+        <record id="teacher_action_all_views" model="ir.actions.act_window">
+            <field name="name">Giảng viên</field>
+            <field name="res_model">teacher.odoo</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="teacher_kanban_view" />
+        </record>
+
+        <!-- Menu chính: Giảng viên -->
+        <menuitem id="teacher_menu" name="Giảng viên" action="teacher_action_all_views" />
+
+        <!-- Các menu con -->
+        <menuitem id="teacher_menu_views" name="Chế độ xem" parent="teacher_menu">
+            <menuitem id="teacher_menu_form" name="Tạo Giảng viên" action="teacher_action_form" />
+            <menuitem id="teacher_menu_tree" name="Danh sách Giảng viên (Tree)"
+                action="teacher_action_tree" />
+            <menuitem id="teacher_menu_kanban" name="Danh sách Giảng viên (Kanban)"
+                action="teacher_action_kanban" />
+        </menuitem>
+
+    </data>
+</odoo>
