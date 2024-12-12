@@ -1,9 +1,7 @@
 # Tìm và chọn mục 'Tin mới nhất' trong dropdown.
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
 
 def navigate_to_featured_news(driver):
     try:

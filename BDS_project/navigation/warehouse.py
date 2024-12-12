@@ -16,15 +16,6 @@ def navigate_to_warehouse(driver, output_file="warehouse.html"):
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
         print("Đã điều hướng đến trang warehouse.")
 
-        # # Chờ thêm thời gian để đảm bảo nội dung động được tải đầy đủ
-        # time.sleep(10)
-
-        # # Lưu mã HTML của trang
-        # html_content = driver.page_source
-        # with open(output_file, "w", encoding="utf-8") as file:
-        #     file.write(html_content)
-        # print(f"Đã lưu mã HTML của trang kho hàng vào tệp: {output_file}")
-
     except Exception as e:
         print(f"Lỗi khi điều hướng hoặc lưu mã HTML: {e}")
         raise
